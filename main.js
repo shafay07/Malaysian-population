@@ -128,7 +128,12 @@ function selection(){
     var trace3 = {
         x: selecttocolumn(selx.value),
         y: selecttocolumn(sely.value),
-        type: 'line'
+        line: 
+        {
+            color: 'rgb(128, 0, 128)',
+            width: 2
+        },
+        type: 'line bar'
     };
     var layout = {
         autosize: true,
