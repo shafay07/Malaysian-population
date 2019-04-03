@@ -1,4 +1,4 @@
-Year,Population,Yearly %   Change,Yearly  Change,Migrants (net),Median Age,Fertility Rate,Density (P/Km²),Urban  Pop %,Urban Population,Country's Share of  World Pop,World Population,Malaysia Global Rank
+Year,Population,YearlyPercentChange,YearlyChange,Migrants,MedianAge,FertilityRate,Density,UrbanPop,UrbanPopulation,CountryShareofWorldPop,WorldPopulation,MalaysiaGlobalRank
 2020,32869323,0.0136,429234,50000,29.9,2.01,100,0.777,25544486,0.0042,7795482309,45
 2025,34949758,0.0123,416087,50000,32,1.93,106,0.801,28005193,0.0043,8185613757,47
 2030,36814968,0.0105,373042,50000,34.1,1.86,112,0.82,30181596,0.0043,8551198644,45

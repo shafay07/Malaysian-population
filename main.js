@@ -2,6 +2,7 @@ $(document).ready(function () {
     console.log("JS Ready!");
     graph1();
     graph2();
+    graph3();
 });
 //variables holding each column of csv
 var yearlydata; //to store csv object
@@ -27,7 +28,7 @@ function graph1() {
     var yearly_rate = [] //yearly growth rate
 
     //loading csv file using d3 csv parser
-    d3.csv("population.csv").then(function (data) {
+    d3.csv("Data/population.csv").then(function (data) {
         data_set = data;
         //preprocess the data, convert into single array
         for (i = 0; i < data_set.length; i++) {
@@ -41,12 +42,19 @@ function graph1() {
             x: date,
             y: population,
             text: yearly_rate,
-            type: 'line'
+            type: 'scatter',
+            line: {
+                color: 'rgb(0, 255, 120)',
+                width: 3
+              }
         }
         //bar graph
         var trace2 = {
             x: date,
             y: population,
+            marker: {
+                color: 'rgb(200,50,100)'
+              },
             text: yearly_rate,
             type: 'bar'
         }
@@ -158,7 +166,7 @@ function selection(){
 //draw function for second graph
 function graph2(){
     //loading csv file using d3 csv parser
-    d3.csv("yearlydata.csv").then(function (data) {
+    d3.csv("Data/yearlydata.csv").then(function (data) {
         yearlydata = data;
         //pre process data to convert array of object into single array 
         for (i = 0; i < yearlydata.length; i++) {
@@ -180,4 +188,55 @@ function graph2(){
 
     });
     
+}
+//prediction graph
+function graph3(){
+    var data_set;
+    var years = []; //years
+    var pred_population = []; //population numbers
+    var WorldPopulation =[];
+    d3.csv("Data/predictions.csv").then(function (data) {
+        data_set = data;
+        //preprocess the data, convert into single array
+        for (i = 0; i < data_set.length; i++) {
+            years.push(data_set[i].Year);
+            pred_population.push(data_set[i].Population);
+            WorldPopulation.push(data_set[i].WorldPopulation);
+        }
+        var trace = {
+            x: years,
+            y: pred_population,
+            text: WorldPopulation,
+            mode: 'markers',
+            
+            marker: {
+                size: 50,
+                color: pred_population
+            }
+        }
+        //data array for 2 different graphs
+        var data = [trace];
+        //layout controls the graph attributes
+        var layout = {
+            autosize: true,
+            title: 'Future Predictions with Global Population on hover',
+            titlefont: { size:30 },
+            xaxis: {
+                ticks: 'outside',
+                title: 'Year',
+                titlefont: { size:20 },
+                tickwidth: 4,
+                tickcolor: '#000'
+            },
+            yaxis: {
+                title: 'Predicted Population',
+                titlefont: { size:20 },
+                tickcolor: '#000'
+            }
+        };
+        //draw the graph using plotly
+        Plotly.newPlot('graph2', data, layout);
+    });
+    
+
 }
